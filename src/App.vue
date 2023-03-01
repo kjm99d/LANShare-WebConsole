@@ -1,15 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  
+  <FTPTable/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FTPTable from './components/ftp/FTPTable.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FTPTable
   }
 }
 </script>
