@@ -1,4 +1,5 @@
-# lanshare_webconsole
+# LANShare WebConsole
+[![Build and Deploy](https://github.com/kjm99d/LANShare-WebConsole/actions/workflows/deploy.yml/badge.svg)](https://github.com/kjm99d/LANShare-WebConsole/actions/workflows/deploy.yml)
 
 ## Project setup
 ```
