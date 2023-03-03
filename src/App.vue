@@ -1,18 +1,25 @@
 <template>
-  
-  <RouterLink to="/hello" msg="aaa">Overview</RouterLink>
-  <RouterLink to="/ftp" msg="aaa">FTP</RouterLink>
-  <RouterView></RouterView>
+    <v-layout>
+      <v-navigation-drawer image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg" permanent theme="dark">
+        <v-list nav>
+          <v-list-item prepend-icon="mdi-email" title="Overview" value="Overview" to="/"></v-list-item>
+          <v-list-item prepend-icon="mdi-account-supervisor-circle" title="FTP Service" value="supervisors" to="/ftp"></v-list-item>
+          <v-list-item prepend-icon="mdi-clock-start" title="Setting" value="ServiceSetting" to="/setting"></v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-main>
+        <RouterView></RouterView>
+      </v-main>
+    </v-layout>
 </template>
 
 <script>
-import {RouterLink, RouterView} from 'vue-router'
+import { RouterView } from 'vue-router'
 
 export default {
   name: 'App',
   components: {
-    RouterLink,
-    RouterView, 
+    RouterView,
   }
 }
 </script>

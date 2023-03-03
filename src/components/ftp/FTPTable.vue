@@ -1,10 +1,14 @@
 <template>
     <div>
         <h1>FTP Service</h1>
-
-        <p>Service URL </p><input type="text">
-        <p>현재경로 {{ this.current_path }}</p>
-        <table-component v-on:append-path="appendPath" :items="items"/>
+        <div v-if="this.IsLoading === false">
+            <p>현재경로 {{ this.current_path }}</p>
+            <table-component v-on:append-path="appendPath" :items="items" />
+        </div>
+        
+        <div v-else class="text-center">
+            <v-progress-circular :size="50" color="blue" indeterminate />
+        </div>
     </div>
 </template>
   
@@ -17,19 +21,24 @@ export default {
         'table-component': TableComponent
     },
     mounted() {
-        console.log("mount !")
+        console.log("created !")
+
         const path = this.StackToPath(this.stack_path)
         this.current_path = path;
-
         this.GetServerFiles(path)
+
     },
     watch: {
+        // Stack Path Array 변화 관찰
         stack_path(newPathStack) {
+            console.log("watch !")
 
             const path = this.StackToPath(newPathStack)
             this.current_path = path;
 
+
             this.GetServerFiles(path)
+
         }
     },
     methods: {
@@ -54,19 +63,24 @@ export default {
             return path;
         },
         GetServerFiles(dir) {
+            this.IsLoading = true;
+
             const target = "http://localhost:5004/ftp";
             const query = "?path=" + dir
             axios.get(target + query)
                 .then((response) => {
                     this.items = response.data.data
                     this.items.unshift({ "is_dir": true, "name": ".." });
+                    this.IsLoading = false;
                 })
         },
     },
     data() {
         return {
+            IsLoading: true,
+
             current_path: "",
-            stack_path: ["C:"],
+            stack_path: ["C:\\"],
             items: []
         }
     }
