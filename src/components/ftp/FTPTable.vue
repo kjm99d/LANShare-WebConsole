@@ -2,6 +2,7 @@
     <div>
         <h1>FTP Service</h1>
 
+        <p>Service URL </p><input type="text">
         <p>현재경로 {{ this.current_path }}</p>
         <table-component v-on:append-path="appendPath" :items="items"/>
     </div>

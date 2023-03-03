@@ -1,15 +1,18 @@
 <template>
   
-  <FTPTable/>
+  <RouterLink to="/hello" msg="aaa">Overview</RouterLink>
+  <RouterLink to="/ftp" msg="aaa">FTP</RouterLink>
+  <RouterView></RouterView>
 </template>
 
 <script>
-import FTPTable from './components/ftp/FTPTable.vue'
+import {RouterLink, RouterView} from 'vue-router'
 
 export default {
   name: 'App',
   components: {
-    FTPTable
+    RouterLink,
+    RouterView, 
   }
 }
 </script>
