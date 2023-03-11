@@ -14,7 +14,7 @@
           <td>{{ item.is_dir ? "📂" : "📄" }}</td>
           <td style="text-align: left">{{ item.name }}</td>
           <td>{{ item.size }}</td>
-          <td>{{ item.is_dir == false ? "📤" : "" }}</td>
+          <td> <button @click="SendFile(item)">{{ item.is_dir == false ? "📤" : "" }} </button> </td>
         </tr>
       </tbody>
     </v-table>
@@ -22,8 +22,23 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   methods: {
+    SendFile(item) {
+      // 디렉토리인 경우 이벤트를 무시한다.
+      if (item.is_dir) return -1;
+
+      console.log(item)
+      
+      axios.post("http://localhost:5004/SendAll", {
+        "filepath" : item.name,
+        "filename" : "asd.txt"
+      })
+      
+    },
     appendPath(row) {
       if (row.is_dir)
         this.$emit('append-path', row.name);
