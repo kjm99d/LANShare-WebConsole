@@ -14,6 +14,7 @@
           <td>{{ item.is_dir ? "📂" : "📄" }}</td>
           <td style="text-align: left">{{ item.name }}</td>
           <td>{{ item.size }}</td>
+          <td>{{ item.is_dir == false ? "📤" : "" }}</td>
         </tr>
       </tbody>
     </v-table>
