@@ -32,12 +32,18 @@ export default {
       if (item.is_dir) return -1;
 
       console.log(item)
-      
+
       axios.post("http://localhost:5004/SendAll", {
-        "filepath" : item.name,
-        "filename" : "asd.txt"
+        filepath: 'C:\\asd.txt',
+        filename: '\\bb.txt'
       })
-      
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
     },
     appendPath(row) {
       if (row.is_dir)
