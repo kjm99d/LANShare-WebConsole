@@ -31,12 +31,18 @@ export default {
       // 디렉토리인 경우 이벤트를 무시한다.
       if (item.is_dir) return -1;
 
-      console.log(item)
+      console.log(item);
+      const config = {
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
+      }
 
-      axios.post("http://localhost:5004/SendAll", {
-        filepath: 'C:\\asd.txt',
-        filename: '\\bb.txt'
-      })
+
+      axios.post("http://localhost:5004/SendAll", JSON.stringify({
+        filepath: this.path + item.name,
+        filename: "\\"+item.name
+      }), config)
         .then(function (response) {
           console.log(response);
         })
@@ -54,6 +60,10 @@ export default {
     items: {
       type: Array,
       required: true
+    },
+    path : {
+      type : String,
+      required : true
     }
   }
 }

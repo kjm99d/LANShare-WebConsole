@@ -3,7 +3,7 @@
         <h1>FTP Service</h1>
         <div v-if="this.IsLoading === false">
             <p>현재경로 {{ this.current_path }}</p>
-            <table-component v-on:append-path="appendPath" :items="items" />
+            <table-component :path="current_path" v-on:append-path="appendPath" :items="items" />
         </div>
         
         <div v-else class="text-center">
@@ -80,7 +80,7 @@ export default {
             IsLoading: true,
 
             current_path: "",
-            stack_path: ["C:\\"],
+            stack_path: ["C:"],
             items: []
         }
     }
